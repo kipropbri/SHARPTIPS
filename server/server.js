@@ -3,13 +3,14 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static("../"));
+app.use(express.static(path.join(__dirname, "..")));
 
 const PORT = process.env.PORT || 3000;
 
