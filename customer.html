@@ -1,0 +1,856 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SHARPTIPS | Customer Account</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #0b0f0d;
+    color: white;
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.logo {
+    text-align: center;
+    color: #36d66b;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9ba69f;
+    margin-bottom: 35px;
+}
+
+.box {
+    background: #121a15;
+    border: 1px solid #26352b;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #36d66b;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 7px;
+    border: 1px solid #34443a;
+    background: #0b0f0d;
+    color: white;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #36d66b;
+    color: #071009;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2fc05d;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 7px;
+    display: none;
+}
+
+.success {
+    background: #123c20;
+    color: #71e594;
+}
+
+.error {
+    background: #421919;
+    color: #ff8d8d;
+}
+
+.account {
+    display: none;
+}
+
+.tip {
+    background: #0b0f0d;
+    border: 1px solid #26352b;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.tip h3 {
+    color: #36d66b;
+    margin-bottom: 10px;
+}
+
+.tip p {
+    margin: 6px 0;
+    color: #cbd3cd;
+}
+
+.logout {
+    background: #333;
+    color: white;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    color: #36d66b;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+SHARPTIPS
+</div>
+
+<p class="subtitle">
+Customer Account
+</p>
+
+
+<!-- REGISTER -->
+
+<div class="box" id="registerBox">
+
+<h2>Create Account</h2>
+
+<label>Name</label>
+
+<input
+    type="text"
+    id="registerName"
+    placeholder="Your name"
+>
+
+<label>Email</label>
+
+<input
+    type="email"
+    id="registerEmail"
+    placeholder="Your email"
+>
+
+<label>Password</label>
+
+<input
+    type="password"
+    id="registerPassword"
+    placeholder="Create a password"
+>
+
+<button onclick="register()">
+CREATE ACCOUNT
+</button>
+
+<div
+    id="registerMessage"
+    class="message">
+</div>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div class="box" id="loginBox">
+
+<h2>Customer Login</h2>
+
+<label>Email</label>
+
+<input
+    type="email"
+    id="loginEmail"
+    placeholder="Your email"
+>
+
+<label>Password</label>
+
+<input
+    type="password"
+    id="loginPassword"
+    placeholder="Your password"
+>
+
+<button onclick="customerLogin()">
+LOGIN
+</button>
+
+<div
+    id="loginMessage"
+    class="message">
+</div>
+
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div
+    class="account"
+    id="accountBox">
+
+<div class="box">
+
+<h2>Welcome to SHARPTIPS</h2>
+
+<p id="welcomeMessage"></p>
+
+<button
+    class="logout"
+    onclick="customerLogout()">
+LOGOUT
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>Available Tips</h2>
+
+<div id="customerTips"></div>
+
+</div>
+
+</div>
+
+
+<a
+    href="index.html"
+    class="back">
+← Back to SHARPTIPS
+</a>
+
+</div>
+
+
+<script>
+
+function getUsers() {
+
+    return JSON.parse(
+        localStorage.getItem("sharpTipsUsers")
+    ) || [];
+
+}
+
+
+function saveUsers(users) {
+
+    localStorage.setItem(
+        "sharpTipsUsers",
+        JSON.stringify(users)
+    );
+
+}
+
+
+function register() {
+
+    const name =
+        document.getElementById("registerName").value.trim();
+
+    const email =
+        document.getElementById("registerEmail").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+
+    if (!name || !email || !password) {
+
+        showMessage(
+            "registerMessage",
+            "Please fill in all fields.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const users = getUsers();
+
+
+    const existingUser =
+        users.find(function(user) {
+
+            return user.email === email;
+
+        });
+
+
+    if (existingUser) {
+
+        showMessage(
+            "registerMessage",
+            "An account with this email already exists.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const user = {
+
+        id: Date.now(),
+
+        name: name,
+
+        email: email,
+
+        password: password,
+
+        purchases: []
+
+    };
+
+
+    users.push(user);
+
+    saveUsers(users);
+
+
+    showMessage(
+        "registerMessage",
+        "Account created successfully. You can now log in.",
+        "success"
+    );
+
+
+    document.getElementById(
+        "registerName"
+    ).value = "";
+
+    document.getElementById(
+        "registerEmail"
+    ).value = "";
+
+    document.getElementById(
+        "registerPassword"
+    ).value = "";
+
+}
+
+
+function customerLogin() {
+
+    const email =
+        document.getElementById("loginEmail").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    const users = getUsers();
+
+
+    const user =
+        users.find(function(account) {
+
+            return (
+                account.email === email &&
+                account.password === password
+            );
+
+        });
+
+
+    if (!user) {
+
+        showMessage(
+            "loginMessage",
+            "Incorrect email or password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    sessionStorage.setItem(
+        "sharpTipsCustomer",
+        user.email
+    );
+
+
+    showAccount(user);
+
+}
+
+
+function getCurrentCustomer() {
+
+    const email =
+        sessionStorage.getItem(
+            "sharpTipsCustomer"
+        );
+
+
+    if (!email) {
+
+        return null;
+
+    }
+
+
+    const users = getUsers();
+
+
+    return users.find(function(user) {
+
+        return user.email === email;
+
+    }) || null;
+
+}
+
+
+function showAccount(user) {
+
+    document.getElementById(
+        "registerBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginBox"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "accountBox"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "welcomeMessage"
+    ).textContent =
+        "Welcome, " + user.name + "!";
+
+
+    displayCustomerTips();
+
+}
+
+async function checkPaymentStatus(tipId, email) {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:3000/api/payment-status?email=" +
+            encodeURIComponent(email) +
+            "&tipId=" +
+            encodeURIComponent(tipId)
+        );
+
+        const data = await response.json();
+
+        if (data.purchased === true) {
+
+            const user = getCurrentCustomer();
+
+            if (!user) {
+                return;
+            }
+
+            if (!user.purchases.includes(tipId)) {
+
+                user.purchases.push(tipId);
+
+                const users = getUsers();
+
+                const userIndex =
+                    users.findIndex(function(account) {
+
+                        return (
+                            account.email === user.email
+                        );
+
+                    });
+
+                if (userIndex !== -1) {
+
+                    users[userIndex] = user;
+
+                    saveUsers(users);
+
+                }
+
+            }
+
+            displayCustomerTips();
+
+            alert(
+                "Payment confirmed! Premium tip unlocked."
+            );
+
+            return;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Payment status check failed:",
+            error
+        );
+
+    }
+
+    setTimeout(function() {
+
+        checkPaymentStatus(
+            tipId,
+            email
+        );
+
+    }, 5000);
+
+}
+function displayCustomerTips() {
+
+    const user =
+        getCurrentCustomer();
+
+
+    if (!user) {
+
+        return;
+
+    }
+
+
+    const tips =
+        JSON.parse(
+            localStorage.getItem("sharpTips")
+        ) || [];
+
+
+    const container =
+        document.getElementById(
+            "customerTips"
+        );
+
+
+    if (tips.length === 0) {
+
+        container.innerHTML =
+            "<p>No tips available yet.</p>";
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    tips.forEach(function(tip) {
+
+
+        const hasPurchased =
+            user.purchases.includes(
+                tip.id
+            );
+
+
+        if (tip.type === "premium") {
+
+
+            if (hasPurchased) {
+
+                container.innerHTML += `
+
+<div class="tip">
+
+<h3>
+🔓 PREMIUM TIP — PURCHASED
+</h3>
+
+<p>
+<strong>Match:</strong>
+${tip.match}
+</p>
+
+<p>
+<strong>Prediction:</strong>
+${tip.prediction}
+</p>
+
+<p>
+<strong>Odds:</strong>
+${tip.odds}
+</p>
+
+<p>
+<strong>Analysis:</strong>
+${tip.analysis}
+</p>
+
+<p>
+<strong>Access:</strong>
+✅ Purchased
+</p>
+
+</div>
+
+`;
+
+            } else {
+
+                container.innerHTML += `
+
+<div class="tip">
+
+<h3>
+🔒 PREMIUM TIP
+</h3>
+
+<p>
+<strong>Match:</strong>
+${tip.match}
+</p>
+
+<p>
+Premium prediction available after purchase.
+</p>
+
+<p>
+<strong>Price:</strong>
+KES ${tip.price}
+</p>
+
+<button
+onclick="buyTip(${tip.id})">
+
+BUY TIP
+
+</button>
+
+</div>
+
+`;
+
+            }
+
+
+        } else {
+
+
+            container.innerHTML += `
+
+<div class="tip">
+
+<h3>
+🆓 FREE TIP
+</h3>
+
+<p>
+<strong>Match:</strong>
+${tip.match}
+</p>
+
+<p>
+<strong>Prediction:</strong>
+${tip.prediction}
+</p>
+
+<p>
+<strong>Odds:</strong>
+${tip.odds}
+</p>
+
+<p>
+<strong>Analysis:</strong>
+${tip.analysis}
+</p>
+
+</div>
+
+`;
+
+        }
+
+    });
+
+}
+
+
+async function buyTip(id) {
+
+    const user = getCurrentCustomer();
+
+    if (!user) {
+        alert("Please log in first.");
+        return;
+    }
+
+    if (user.purchases.includes(id)) {
+        alert("You already purchased this tip.");
+        return;
+    }
+
+    const phone = prompt(
+        "Enter your M-Pesa phone number:"
+    );
+
+    if (!phone) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:3000/api/stkpush",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    amount: 1,
+                    phone: phone,
+                    tipId: id,
+                    email: user.email
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log("STK Push response:", data);
+
+        if (data.ResponseCode === "0") {
+
+            alert(
+                "M-Pesa payment request sent. Please check your phone and enter your M-Pesa PIN."
+            );
+checkPaymentStatus(
+    id,
+    user.email
+);
+        } else {
+
+            alert(
+                "M-Pesa request was not accepted."
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to connect to the payment server."
+        );
+
+    }
+
+}
+
+   
+
+function customerLogout() {
+
+    sessionStorage.removeItem(
+        "sharpTipsCustomer"
+    );
+
+
+    location.reload();
+
+}
+
+
+function showMessage(
+    elementId,
+    message,
+    type
+) {
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    element.textContent =
+        message;
+
+
+    element.className =
+        "message " + type;
+
+
+    element.style.display =
+        "block";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+```
