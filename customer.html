@@ -494,7 +494,7 @@ async function checkPaymentStatus(tipId, email) {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/payment-status?email=" +
+            "/api/payment-status?email=" +
             encodeURIComponent(email) +
             "&tipId=" +
             encodeURIComponent(tipId)
@@ -758,7 +758,7 @@ async function buyTip(id) {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/stkpush",
+            "/api/stkpush",
             {
                 method: "POST",
 
