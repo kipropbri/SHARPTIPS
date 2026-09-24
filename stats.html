@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHARPTIPS | Statistics</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #35e56f;
+    --green-dark: #18a94d;
+    --gold: #f5c451;
+    --white: #f5f7f5;
+    --muted: #9aa79f;
+    --panel: rgba(7,15,10,0.84);
+    --border: rgba(255,255,255,0.10);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--white);
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(2,7,4,0.62),
+            rgba(2,7,4,0.92)
+        ),
+        url("background.png") center top / cover fixed no-repeat;
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 0 18px 60px;
+}
+
+/* HEADER */
+
+header {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(3,9,5,0.78);
+
+    backdrop-filter: blur(12px);
+
+    padding: 10px 20px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 190px;
+    height: auto;
+    display: block;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a {
+    color: #dce5df;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+
+    padding: 10px 11px;
+
+    border-radius: 8px;
+}
+
+nav a:hover {
+    color: var(--green);
+    background: rgba(53,229,111,0.08);
+}
+
+.account-btn {
+    background: var(--green);
+    color: #061009 !important;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+
+    padding: 75px 15px 45px;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 9px 17px;
+
+    margin-bottom: 20px;
+
+    border-radius: 30px;
+
+    background: rgba(53,229,111,0.12);
+
+    border: 1px solid rgba(53,229,111,0.35);
+
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.hero h1 {
+    font-size: clamp(38px,6vw,65px);
+
+    line-height: 1.03;
+
+    margin-bottom: 20px;
+
+    font-weight: 900;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero p {
+    max-width: 680px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+/* STATS */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 15px;
+
+    max-width: 1050px;
+
+    margin: 20px auto;
+}
+
+.stat-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    font-size: 34px;
+
+    font-weight: 900;
+
+    color: var(--green);
+
+    margin-bottom: 8px;
+}
+
+.stat-card:nth-child(2)
+.stat-number {
+    color: var(--gold);
+}
+
+.stat-label {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+/* PERFORMANCE */
+
+.performance {
+    max-width: 1050px;
+
+    margin: 30px auto;
+
+    padding: 28px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+}
+
+.performance h2 {
+    margin-bottom: 20px;
+}
+
+.bar-row {
+    margin: 20px 0;
+}
+
+.bar-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+.bar-header span:last-child {
+    color: var(--green);
+
+    font-weight: 800;
+}
+
+.bar {
+    height: 10px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.08);
+
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: var(--green);
+}
+
+.bar-fill.gold {
+    background: var(--gold);
+}
+
+/* NOTE */
+
+.note {
+    max-width: 1050px;
+
+    margin: 20px auto;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(245,196,81,0.07);
+
+    border: 1px solid rgba(245,196,81,0.18);
+
+    color: #d9d2b9;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    color: #66736b;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    padding: 45px 0 10px;
+
+    border-top: 1px solid var(--border);
+
+    margin-top: 55px;
+}
+
+/* MOBILE */
+
+@media (max-width:850px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+    .header-logo {
+        width: 170px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 11px;
+
+        padding: 8px 9px;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+@media (max-width:500px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="header.png"
+            class="header-logo"
+            alt="SHARPTIPS"
+        >
+
+    </div>
+
+    <nav>
+
+        <a href="index.html">HOME</a>
+
+        <a href="tips.html">TIPS</a>
+
+        <a href="stats.html">STATS</a>
+
+        <a href="premium.html">PREMIUM</a>
+
+        <a href="results.html">RESULTS</a>
+
+        <a href="about.html">ABOUT</a>
+
+        <a
+            href="customer.html"
+            class="account-btn"
+        >
+            ACCOUNT
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-badge">
+        📊 SHARPTIPS PERFORMANCE
+    </div>
+
+    <h1>
+        Football <span>Statistics</span>
+    </h1>
+
+    <p>
+        Track SHARPTIPS selections and review
+        recorded performance over time.
+    </p>
+
+</section>
+
+
+<section class="stats-grid">
+
+    <div class="stat-card">
+
+        <div
+            class="stat-number"
+            id="totalTips"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Total Tips
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="stat-number"
+            id="wonTips"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Won
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="stat-number"
+            id="lostTips"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            Lost
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div
+            class="stat-number"
+            id="winRate"
+        >
+            0%
+        </div>
+
+        <div class="stat-label">
+            Win Rate
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="performance">
+
+    <h2>
+        Performance Overview
+    </h2>
+
+
+    <div class="bar-row">
+
+        <div class="bar-header">
+
+            <span>
+                Winning Tips
+            </span>
+
+            <span id="wonPercent">
+                0%
+            </span>
+
+        </div>
+
+        <div class="bar">
+
+            <div
+                class="bar-fill"
+                id="wonBar"
+                style="width:0%"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bar-row">
+
+        <div class="bar-header">
+
+            <span>
+                Losing Tips
+            </span>
+
+            <span id="lostPercent">
+                0%
+            </span>
+
+        </div>
+
+        <div class="bar">
+
+            <div
+                class="bar-fill gold"
+                id="lostBar"
+                style="width:0%"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="note">
+
+    📌 <strong>Important:</strong>
+
+    Statistics on this page are calculated from
+    recorded tip results. Add and update results
+    through the SHARPTIPS administration system
+    as matches are completed.
+
+</div>
+
+
+<footer class="footer">
+
+    <strong style="color:#dce5df;">
+        SHARPTIPS
+    </strong>
+
+    <br>
+
+    Football analysis, predictions and premium selections.
+
+    <br>
+
+    <span style="color:#4f5b54;">
+        © 2026 SHARPTIPS. All rights reserved.
+    </span>
+
+</footer>
+
+</div>
+
+
+<script>
+
+function loadStats() {
+
+    const tips =
+        JSON.parse(
+            localStorage.getItem("sharpTips")
+        ) || [];
+
+
+    const total =
+        tips.length;
+
+
+    let won = 0;
+
+    let lost = 0;
+
+
+    tips.forEach(function(tip) {
+
+        const result =
+            String(
+                tip.result || ""
+            ).toLowerCase();
+
+
+        if (
+            result === "won" ||
+            result === "win"
+        ) {
+
+            won++;
+
+        }
+
+
+        if (
+            result === "lost" ||
+            result === "loss"
+        ) {
+
+            lost++;
+
+        }
+
+    });
+
+
+    const completed =
+        won + lost;
+
+
+    const winRate =
+        completed > 0
+            ? Math.round(
+                (won / completed) * 100
+              )
+            : 0;
+
+
+    const wonPercent =
+        completed > 0
+            ? Math.round(
+                (won / completed) * 100
+              )
+            : 0;
+
+
+    const lostPercent =
+        completed > 0
+            ? Math.round(
+                (lost / completed) * 100
+              )
+            : 0;
+
+
+    document.getElementById(
+        "totalTips"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "wonTips"
+    ).textContent = won;
+
+
+    document.getElementById(
+        "lostTips"
+    ).textContent = lost;
+
+
+    document.getElementById(
+        "winRate"
+    ).textContent =
+        winRate + "%";
+
+
+    document.getElementById(
+        "wonPercent"
+    ).textContent =
+        wonPercent + "%";
+
+
+    document.getElementById(
+        "lostPercent"
+    ).textContent =
+        lostPercent + "%";
+
+
+    document.getElementById(
+        "wonBar"
+    ).style.width =
+        wonPercent + "%";
+
+
+    document.getElementById(
+        "lostBar"
+    ).style.width =
+        lostPercent + "%";
+
+}
+
+
+loadStats();
+
+</script>
+
+</body>
+
+</html>

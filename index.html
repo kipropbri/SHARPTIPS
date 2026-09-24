@@ -1,225 +1,1446 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SHARPTIPS | Premium Betting Tips</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<title>SHARPTIPS | Football Predictions & Analysis</title>
 
-        body {
-            background: #0b0f0d;
-            color: white;
-        }
+<style>
 
-        header {
-            background: #101713;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #26352b;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #36d66b;
-        }
+:root {
+    --green: #35e56f;
+    --green-dark: #18a94d;
+    --gold: #f5c451;
+    --white: #f5f7f5;
+    --muted: #9aa79f;
+    --panel: rgba(7, 15, 10, 0.86);
+    --panel-light: rgba(14, 25, 18, 0.92);
+    --border: rgba(255,255,255,0.10);
+    --red: #ff6262;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        nav a:hover {
-            color: #36d66b;
-        }
+body {
+    font-family: Arial, sans-serif;
+    color: var(--white);
+    min-height: 100vh;
 
-        .hero {
-            text-align: center;
-            padding: 90px 20px;
-            background: linear-gradient(135deg, #0b0f0d, #14251a);
-        }
+    background:
+        linear-gradient(
+            rgba(2, 7, 4, 0.64),
+            rgba(2, 7, 4, 0.94)
+        ),
+        url("background.png") center top / cover fixed no-repeat;
+}
 
-        .hero h1 {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
+.container {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 18px 50px;
+}
 
-        .hero h1 span {
-            color: #36d66b;
-        }
+/* HEADER */
 
-        .hero p {
-            font-size: 20px;
-            color: #b7c1ba;
-            margin-bottom: 30px;
-        }
+header {
+    min-height: 72px;
 
-        .button {
-            display: inline-block;
-            background: #36d66b;
-            color: #071009;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        section {
-            padding: 60px 8%;
-        }
+    border-bottom: 1px solid var(--border);
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-            font-size: 32px;
-        }
+    background: rgba(3, 9, 5, 0.82);
 
-        .tips {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
+    backdrop-filter: blur(12px);
 
-        .card {
-            background: #121a15;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #26352b;
-        }
+    padding: 10px 20px;
 
-        .card h3 {
-            margin-bottom: 15px;
-            color: #36d66b;
-        }
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .card p {
-            margin: 8px 0;
-            color: #cbd3cd;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+}
 
-        .premium {
-            border: 1px solid #36d66b;
-        }
+.header-logo {
+    width: 190px;
+    height: auto;
+    display: block;
+}
 
-        .price {
-            font-size: 25px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
+nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #080b09;
-            color: #8e9891;
-        }
+nav a {
+    color: #dce5df;
+    text-decoration: none;
 
-        @media (max-width: 700px) {
-            .hero h1 {
-                font-size: 40px;
-            }
+    font-size: 12px;
+    font-weight: 800;
 
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
+    padding: 10px 11px;
 
-            nav a {
-                margin: 0 8px;
-            }
-        }
-    </style>
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: var(--green);
+    background: rgba(53,229,111,0.08);
+}
+
+.account-btn {
+    background: var(--green);
+    color: #061009 !important;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+
+    padding: 85px 15px 55px;
+
+    max-width: 950px;
+
+    margin: auto;
+}
+
+.hero-badge {
+    display: inline-block;
+
+    padding: 9px 17px;
+
+    margin-bottom: 20px;
+
+    border-radius: 30px;
+
+    background: rgba(53,229,111,0.12);
+
+    border: 1px solid rgba(53,229,111,0.35);
+
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    box-shadow:
+        0 0 25px rgba(53,229,111,0.08);
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 70px);
+
+    line-height: 1.02;
+
+    margin-bottom: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+
+    text-shadow:
+        0 4px 25px rgba(0,0,0,0.45);
+}
+
+.hero h1 span {
+    color: var(--green);
+
+    text-shadow:
+        0 0 25px rgba(53,229,111,0.25);
+}
+
+.hero p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 28px;
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-block;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    transition: 0.2s;
+}
+
+.primary-btn {
+    background: var(--green);
+
+    color: #061009;
+}
+
+.primary-btn:hover {
+    background: #4df07f;
+
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: rgba(255,255,255,0.06);
+
+    color: white;
+
+    border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+/* TRUST STRIP */
+
+.trust-strip {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin: 10px 0 30px;
+}
+
+.trust-item {
+    text-align: center;
+
+    padding: 18px 10px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    backdrop-filter: blur(10px);
+}
+
+.trust-item strong {
+    display: block;
+
+    color: var(--green);
+
+    font-size: 22px;
+
+    margin-bottom: 5px;
+}
+
+.trust-item span {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+/* SECTION */
+
+.section {
+    margin-top: 45px;
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+}
+
+.section-heading p {
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+/* TIP GRID */
+
+.tip-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+.tip-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,26,20,0.96),
+            rgba(8,13,10,0.96)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    padding: 22px;
+
+    transition: 0.2s;
+}
+
+.tip-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(53,229,111,0.30);
+}
+
+.tip-label {
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 12px;
+}
+
+.tip-card h3 {
+    font-size: 18px;
+
+    margin-bottom: 14px;
+}
+
+.tip-card p {
+    color: #cbd3cd;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin: 7px 0;
+}
+
+.tip-card .locked {
+    color: var(--muted);
+
+    margin-bottom: 18px;
+}
+
+.tip-price {
+    color: var(--gold);
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    margin: 15px 0;
+}
+
+.tip-button {
+    display: block;
+
+    text-align: center;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    background: var(--green);
+
+    color: #061009;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 900;
+}
+
+.premium-tip {
+    border-color:
+        rgba(245,196,81,0.24);
+}
+
+/* STATS */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 23px;
+
+    text-align: center;
+}
+
+.stat-card .icon {
+    font-size: 25px;
+
+    margin-bottom: 9px;
+}
+
+.stat-card .number {
+    font-size: 31px;
+
+    font-weight: 900;
+
+    color: var(--green);
+
+    margin-bottom: 5px;
+}
+
+.stat-card .label {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+/* PREMIUM */
+
+.premium-section {
+    display: grid;
+
+    grid-template-columns: 1.3fr 1fr;
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+.premium-main {
+    padding: 35px;
+
+    border-radius: 20px;
+
+    border: 1px solid
+        rgba(245,196,81,0.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(54,43,18,0.90),
+            rgba(9,14,10,0.95)
+        );
+}
+
+.premium-main .label {
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 12px;
+}
+
+.premium-main h2 {
+    font-size: 32px;
+
+    margin-bottom: 12px;
+}
+
+.premium-main p {
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    margin-bottom: 22px;
+}
+
+.gold-btn {
+    display: inline-block;
+
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    background: var(--gold);
+
+    color: #171208;
+
+    text-decoration: none;
+
+    font-weight: 900;
+}
+
+.premium-features {
+    display: grid;
+
+    gap: 12px;
+}
+
+.premium-feature {
+    padding: 19px;
+
+    border-radius: 14px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+}
+
+.premium-feature strong {
+    display: block;
+
+    margin-bottom: 6px;
+}
+
+.premium-feature span {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* RESULTS */
+
+.results-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.result-card {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+}
+
+.result-card h3 {
+    font-size: 17px;
+
+    margin-bottom: 10px;
+}
+
+.result-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin: 6px 0;
+}
+
+.result-status {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+.won {
+    color: var(--green);
+
+    background:
+        rgba(53,229,111,0.10);
+
+    border: 1px solid
+        rgba(53,229,111,0.22);
+}
+
+.lost {
+    color: var(--red);
+
+    background:
+        rgba(255,98,98,0.10);
+
+    border: 1px solid
+        rgba(255,98,98,0.22);
+}
+
+/* CTA */
+
+.cta {
+    margin-top: 45px;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(53,229,111,0.10),
+            rgba(245,196,81,0.06)
+        );
+
+    border: 1px solid
+        rgba(53,229,111,0.20);
+}
+
+.cta h2 {
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+.cta p {
+    color: var(--muted);
+
+    margin-bottom: 22px;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    color: #66736b;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    padding: 45px 0 10px;
+}
+
+.footer-links {
+    margin: 15px 0;
+}
+
+.footer-links a {
+    color: #8c9991;
+
+    text-decoration: none;
+
+    margin: 0 8px;
+
+    font-size: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--green);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 14px;
+    }
+
+    .header-logo {
+        width: 170px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 11px;
+
+        padding: 8px 9px;
+    }
+
+    .trust-strip,
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .tip-grid,
+    .results-grid,
+    .premium-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero {
+        padding-top: 55px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .trust-strip,
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .premium-main {
+        padding: 25px;
+    }
+
+    .premium-main h2 {
+        font-size: 27px;
+    }
+}
+
+</style>
+<style>
+/* Mobile SHARPTIPS improvements */
+@media (max-width: 700px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container,
+    .hero,
+    .section,
+    .stats-grid,
+    .tips-grid,
+    .cards,
+    .results-grid {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    header {
+        padding: 12px 15px;
+    }
+
+    nav {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    .hero {
+        padding: 45px 18px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .tips-grid,
+    .cards,
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tip-card,
+    .stat-card,
+    .result-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .section {
+        padding: 35px 15px;
+    }
+
+    footer {
+        padding: 25px 15px;
+        text-align: center;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<div class="container">
+
+<!-- HEADER -->
+
 <header>
-    <div class="logo">SHARPTIPS</div>
+
+    <div class="brand">
+
+        <img
+            src="header.png"
+            class="header-logo"
+            alt="SHARPTIPS"
+        >
+
+    </div>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#tips">Tips</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#results">Results</a>
+
+        <a href="index.html">HOME</a>
+
+        <a href="tips.html">TIPS</a>
+
+        <a href="stats.html">STATS</a>
+
+        <a href="premium.html">PREMIUM</a>
+
+        <a href="results.html">RESULTS</a>
+
+        <a href="about.html">ABOUT</a>
+
+        <a
+            href="customer.html"
+            class="account-btn"
+        >
+            ACCOUNT
+        </a>
+
     </nav>
+
 </header>
 
+
+<!-- HERO -->
+
 <section class="hero">
-    <h1>Welcome to <span>SHARPTIPS</span></h1>
 
-    <p>Smart Picks. Better Decisions.</p>
+    <div class="hero-badge">
+        ⚽ DATA-DRIVEN FOOTBALL
+    </div>
 
-    <a href="#pricing" class="button">View Premium Tips</a>
+    <h1>
+        Predict <span>Smarter.</span><br>
+        Follow Football Better.
+    </h1>
+
+    <p>
+        Football predictions, match analysis,
+        statistics and premium selections —
+        all in one place.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a
+            href="tips.html"
+            class="primary-btn"
+        >
+            ⚽ VIEW TODAY'S TIPS
+        </a>
+
+        <a
+            href="premium.html"
+            class="secondary-btn"
+        >
+            💎 EXPLORE PREMIUM
+        </a>
+
+    </div>
+
 </section>
-```html
-<section id="tips">
 
-    <h2 class="section-title">Today's Tips</h2>
 
-    <div class="tips" id="homepageTips"></div>
+<!-- TRUST -->
+
+<section class="trust-strip">
+
+    <div class="trust-item">
+
+        <strong id="totalTips">
+            0
+        </strong>
+
+        <span>
+            TIPS POSTED
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong id="wonTips">
+            0
+        </strong>
+
+        <span>
+            WON
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong id="lostTips">
+            0
+        </strong>
+
+        <span>
+            LOST
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong id="winRate">
+            0%
+        </strong>
+
+        <span>
+            RECORDED WIN RATE
+        </span>
+
+    </div>
 
 </section>
+
+
+<!-- TODAY'S TIPS -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <h2>
+            ⚡ Today's Selections
+        </h2>
+
+        <p>
+            SHARPTIPS PICKS
+        </p>
+
+    </div>
+
+
+    <div
+        class="tip-grid"
+        id="homepageTips"
+    >
+
+        <!-- JavaScript loads tips here -->
+
+    </div>
+
+</section>
+
+
+<!-- PERFORMANCE -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <h2>
+            📊 Performance Overview
+        </h2>
+
+        <p>
+            LIVE FROM YOUR TIPS
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="icon">
+                ⚽
+            </div>
+
+            <div
+                class="number"
+                id="statTotal"
+            >
+                0
+            </div>
+
+            <div class="label">
+                TOTAL TIPS
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">
+                ✅
+            </div>
+
+            <div
+                class="number"
+                id="statWon"
+            >
+                0
+            </div>
+
+            <div class="label">
+                WON
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">
+                ❌
+            </div>
+
+            <div
+                class="number"
+                id="statLost"
+            >
+                0
+            </div>
+
+            <div class="label">
+                LOST
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">
+                📈
+            </div>
+
+            <div
+                class="number"
+                id="statRate"
+            >
+                0%
+            </div>
+
+            <div class="label">
+                WIN RATE
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PREMIUM -->
+
+<section class="section">
+
+    <div class="premium-section">
+
+        <div class="premium-main">
+
+            <div class="label">
+                💎 PREMIUM ACCESS
+            </div>
+
+            <h2>
+                Unlock Premium Selections
+            </h2>
+
+            <p>
+                Get access to premium football
+                selections and detailed analysis
+                through your SHARPTIPS account.
+            </p>
+
+            <a
+                href="premium.html"
+                class="gold-btn"
+            >
+                🔓 VIEW PREMIUM
+            </a>
+
+        </div>
+
+
+        <div class="premium-features">
+
+            <div class="premium-feature">
+
+                <strong>
+                    🎯 Premium Predictions
+                </strong>
+
+                <span>
+                    Access selections marked for
+                    premium members.
+                </span>
+
+            </div>
+
+
+            <div class="premium-feature">
+
+                <strong>
+                    📊 Detailed Analysis
+                </strong>
+
+                <span>
+                    Review the reasoning and
+                    information attached to selections.
+                </span>
+
+            </div>
+
+
+            <div class="premium-feature">
+
+                <strong>
+                    📱 M-Pesa Access
+                </strong>
+
+                <span>
+                    Premium purchases are processed
+                    through the SHARPTIPS payment flow.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RECENT RESULTS -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <h2>
+            🏆 Recent Results
+        </h2>
+
+        <p>
+            PREVIOUS SELECTIONS
+        </p>
+
+    </div>
+
+
+    <div
+        class="results-grid"
+        id="recentResults"
+    >
+
+        <!-- JavaScript loads results -->
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>
+        Ready to Explore SHARPTIPS?
+    </h2>
+
+    <p>
+        Browse today's football selections
+        or create your account for premium access.
+    </p>
+
+    <a
+        href="customer.html"
+        class="primary-btn"
+    >
+        👤 OPEN CUSTOMER ACCOUNT
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <strong style="color:#dce5df;">
+        SHARPTIPS
+    </strong>
+
+    <br>
+
+    Football analysis, predictions and premium selections.
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="tips.html">
+            Tips
+        </a>
+
+        <a href="stats.html">
+            Stats
+        </a>
+
+        <a href="premium.html">
+            Premium
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </div>
+
+    <span style="color:#4f5b54;">
+        © 2026 SHARPTIPS. All rights reserved.
+    </span>
+
+</footer>
+
+</div>
+
 
 <script>
 
+/* ================================
+   LOAD TIPS
+================================ */
+
 function loadHomepageTips() {
 
-    const tips = JSON.parse(localStorage.getItem("sharpTips")) || [];
+    const tips =
+        JSON.parse(
+            localStorage.getItem("sharpTips")
+        ) || [];
 
-    const container = document.getElementById("homepageTips");
+    const container =
+        document.getElementById(
+            "homepageTips"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
 
     if (tips.length === 0) {
 
         container.innerHTML = `
-            <div class="card">
-                <h3>NO TIPS YET</h3>
-                <p>New SHARPTIPS predictions will appear here.</p>
+
+            <div class="tip-card">
+
+                <div class="tip-label">
+                    ⚽ SHARPTIPS
+                </div>
+
+                <h3>
+                    No Tips Posted Yet
+                </h3>
+
+                <p>
+                    New football selections
+                    will appear here when they
+                    are posted.
+                </p>
+
+                <a
+                    href="tips.html"
+                    class="tip-button"
+                >
+                    VIEW TIPS
+                </a>
+
             </div>
+
         `;
 
         return;
     }
 
+
     container.innerHTML = "";
 
-    tips.forEach(tip => {
+
+    const latestTips =
+        [...tips].reverse().slice(0, 6);
+
+
+    latestTips.forEach(function(tip) {
 
         if (tip.type === "premium") {
 
             container.innerHTML += `
 
-                <div class="card premium">
+                <div class="
+                    tip-card
+                    premium-tip
+                ">
 
-                    <h3>🔒 PREMIUM TIP</h3>
+                    <div class="tip-label"
+                         style="color:var(--gold);">
 
-                    <p>⚽ ${tip.match}</p>
+                        💎 PREMIUM TIP
 
-                    <p><strong>Prediction:</strong> ${tip.prediction}</p>
-
-                    <p><strong>Odds:</strong> ${tip.odds}</p>
-
-                    <p>
-                        Premium analysis available after purchase.
-                    </p>
-
-                    <div class="price">
-                        KES ${tip.price}
                     </div>
 
-                    <a href="#pricing" class="button">
-                        Unlock Tip
+                    <h3>
+                        ${tip.match || "Premium Match"}
+                    </h3>
+
+                    <p class="locked">
+
+                        🔒 Premium prediction
+                        and analysis available
+                        after purchase.
+
+                    </p>
+
+                    <div class="tip-price">
+
+                        KES ${tip.price || 0}
+
+                    </div>
+
+                    <a
+                        href="customer.html"
+                        class="tip-button"
+                        style="
+                            background:var(--gold);
+                            color:#151108;
+                        "
+                    >
+                        🔓 UNLOCK PREMIUM
                     </a>
 
                 </div>
@@ -230,18 +1451,32 @@ function loadHomepageTips() {
 
             container.innerHTML += `
 
-                <div class="card">
+                <div class="tip-card">
 
-                    <h3>🆓 FREE TIP</h3>
+                    <div class="tip-label">
+                        🆓 FREE TIP
+                    </div>
 
-                    <p>⚽ ${tip.match}</p>
-
-                    <p><strong>Prediction:</strong> ${tip.prediction}</p>
-
-                    <p><strong>Odds:</strong> ${tip.odds}</p>
+                    <h3>
+                        ${tip.match || "Match"}
+                    </h3>
 
                     <p>
-                        ${tip.analysis}
+                        <strong>
+                            Prediction:
+                        </strong>
+                        ${tip.prediction || "-"}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Odds:
+                        </strong>
+                        ${tip.odds || "-"}
+                    </p>
+
+                    <p>
+                        ${tip.analysis || ""}
                     </p>
 
                 </div>
@@ -254,103 +1489,255 @@ function loadHomepageTips() {
 
 }
 
+
+/* ================================
+   LOAD STATISTICS
+================================ */
+
+function loadStatistics() {
+
+    const tips =
+        JSON.parse(
+            localStorage.getItem("sharpTips")
+        ) || [];
+
+
+    let won = 0;
+
+    let lost = 0;
+
+
+    tips.forEach(function(tip) {
+
+        const result =
+            String(
+                tip.result ||
+                tip.status ||
+                ""
+            ).toLowerCase();
+
+
+        if (
+            result === "won" ||
+            result === "win"
+        ) {
+
+            won++;
+
+        }
+
+
+        if (
+            result === "lost" ||
+            result === "loss"
+        ) {
+
+            lost++;
+
+        }
+
+    });
+
+
+    const total =
+        tips.length;
+
+
+    const completed =
+        won + lost;
+
+
+    const rate =
+        completed > 0
+            ? Math.round(
+                (won / completed) * 100
+              )
+            : 0;
+
+
+    document.getElementById(
+        "totalTips"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "wonTips"
+    ).textContent = won;
+
+
+    document.getElementById(
+        "lostTips"
+    ).textContent = lost;
+
+
+    document.getElementById(
+        "winRate"
+    ).textContent = rate + "%";
+
+
+    document.getElementById(
+        "statTotal"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "statWon"
+    ).textContent = won;
+
+
+    document.getElementById(
+        "statLost"
+    ).textContent = lost;
+
+
+    document.getElementById(
+        "statRate"
+    ).textContent = rate + "%";
+
+}
+
+
+/* ================================
+   LOAD RECENT RESULTS
+================================ */
+
+function loadRecentResults() {
+
+    const tips =
+        JSON.parse(
+            localStorage.getItem("sharpTips")
+        ) || [];
+
+
+    const container =
+        document.getElementById(
+            "recentResults"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const completed =
+        tips.filter(function(tip) {
+
+            const result =
+                String(
+                    tip.result ||
+                    tip.status ||
+                    ""
+                ).toLowerCase();
+
+            return (
+                result === "won" ||
+                result === "win" ||
+                result === "lost" ||
+                result === "loss"
+            );
+
+        });
+
+
+    if (completed.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="result-card">
+
+                <h3>
+                    No Completed Results
+                </h3>
+
+                <p>
+                    Recorded results will
+                    appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    completed
+        .slice(-3)
+        .reverse()
+        .forEach(function(tip) {
+
+            const result =
+                String(
+                    tip.result ||
+                    tip.status ||
+                    ""
+                ).toLowerCase();
+
+
+            const won =
+                result === "won" ||
+                result === "win";
+
+
+            container.innerHTML += `
+
+                <div class="result-card">
+
+                    <h3>
+                        ${tip.match || "Match"}
+                    </h3>
+
+                    <p>
+                        <strong>
+                            Prediction:
+                        </strong>
+                        ${tip.prediction || "-"}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Odds:
+                        </strong>
+                        ${tip.odds || "-"}
+                    </p>
+
+                    <span class="
+                        result-status
+                        ${won ? "won" : "lost"}
+                    ">
+
+                        ${won
+                            ? "✅ WON"
+                            : "❌ LOST"
+                        }
+
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+}
+
+
+/* ================================
+   START PAGE
+================================ */
+
 loadHomepageTips();
 
+loadStatistics();
+
+loadRecentResults();
+
 </script>
-```
-
-
-        <div class="card">
-            <h3>FREE TIP</h3>
-            <p>⚽ Manchester United vs Chelsea</p>
-            <p>Prediction: Over 1.5 Goals</p>
-            <p>Odds: 1.35</p>
-        </div>
-
-        <div class="card premium">
-            <h3>🔒 PREMIUM TIP</h3>
-            <p>Premium prediction</p>
-            <p>Full analysis available to members.</p>
-
-            <div class="price">KES 100</div>
-
-            <a href="#pricing" class="button">Unlock Tip</a>
-        </div>
-
-        <div class="card">
-            <h3>🔥 ACCUMULATOR</h3>
-            <p>Today's selected matches</p>
-            <p>Combined odds: 5.00+</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="pricing">
-
-    <h2 class="section-title">Premium Packages</h2>
-
-    <div class="tips">
-
-        <div class="card">
-            <h3>DAILY TIP</h3>
-            <p>1 Premium Prediction</p>
-            <div class="price">KES 100</div>
-            <a href="#" class="button">Buy Now</a>
-        </div>
-
-        <div class="card premium">
-            <h3>WEEKEND VIP</h3>
-            <p>Premium weekend predictions</p>
-            <div class="price">KES 300</div>
-            <a href="#" class="button">Buy Now</a>
-        </div>
-
-        <div class="card">
-            <h3>MONTHLY VIP</h3>
-            <p>Access to premium tips for 30 days</p>
-            <div class="price">KES 1,000</div>
-            <a href="#" class="button">Buy Now</a>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="results">
-
-    <h2 class="section-title">Recent Results</h2>
-
-    <div class="tips">
-
-        <div class="card">
-            <h3>WIN ✅</h3>
-            <p>Over 1.5 Goals</p>
-            <p>Odds: 1.35</p>
-        </div>
-
-        <div class="card">
-            <h3>WIN ✅</h3>
-            <p>Both Teams To Score</p>
-            <p>Odds: 1.70</p>
-        </div>
-
-        <div class="card">
-            <h3>LOSS ❌</h3>
-            <p>Match Result</p>
-            <p>Odds: 2.10</p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>© 2026 SHARPTIPS. All rights reserved.</p>
-    <p>Bet responsibly. Predictions are not guarantees of winning.</p>
-</footer>
 
 </body>
 </html>
-```

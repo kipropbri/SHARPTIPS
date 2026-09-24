@@ -1,301 +1,950 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SHARPTIPS | Admin Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<title>SHARPTIPS | Admin</title>
 
-        body {
-            background: #0b0f0d;
-            color: white;
-            padding: 30px;
-        }
+<style>
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        h1 {
-            color: #36d66b;
-            margin-bottom: 10px;
-        }
+:root {
+    --green: #35e56f;
+    --gold: #f5c451;
+    --red: #ff6262;
+    --white: #f5f7f5;
+    --muted: #9aa79f;
+    --panel: rgba(7,15,10,0.90);
+    --border: rgba(255,255,255,0.10);
+}
 
-        .subtitle {
-            color: #9ba69f;
-            margin-bottom: 30px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    color: var(--white);
+    min-height: 100vh;
 
-        .form-box {
-            background: #121a15;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #26352b;
-        }
+    background:
+        linear-gradient(
+            rgba(2,7,4,0.70),
+            rgba(2,7,4,0.94)
+        ),
+        url("background.png") center top / cover fixed no-repeat;
+}
 
-        label {
-            display: block;
-            margin-top: 18px;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 20px;
+}
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px;
-            border-radius: 7px;
-            border: 1px solid #34443a;
-            background: #0b0f0d;
-            color: white;
-            font-size: 15px;
-        }
+/* HEADER */
 
-        textarea {
-            height: 120px;
-            resize: vertical;
-        }
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        button {
-            margin-top: 25px;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            background: #36d66b;
-            color: #071009;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    padding: 15px 20px;
 
-        button:hover {
-            background: #2fc05d;
-        }
+    margin-bottom: 30px;
 
-        .message {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 7px;
-            display: none;
-        }
+    background: rgba(3,9,5,0.85);
 
-        .success {
-            background: #123c20;
-            color: #71e594;
-        }
+    border: 1px solid var(--border);
 
-        .tips {
-            margin-top: 30px;
-        }
+    border-radius: 14px;
+}
 
-        .tip {
-            background: #121a15;
-            border: 1px solid #26352b;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
+.logo {
+    width: 180px;
+}
 
-        .tip h3 {
-            color: #36d66b;
-            margin-bottom: 8px;
-        }
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
 
-        .tip p {
-            margin: 5px 0;
-            color: #cbd3cd;
-        }
+.header-actions a,
+.header-actions button {
+    width: auto;
 
-        .back {
-            display: inline-block;
-            margin-top: 25px;
-            color: #36d66b;
-            text-decoration: none;
-        }
-    </style>
+    margin: 0;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    font-size: 12px;
+}
+
+.back {
+    background: rgba(255,255,255,0.06);
+
+    color: white;
+
+    border: 1px solid var(--border);
+}
+
+.logout {
+    background: #351515;
+
+    color: #ff9b9b;
+
+    border: 1px solid rgba(255,98,98,0.20);
+
+    cursor: pointer;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero p {
+    color: var(--muted);
+}
+
+/* FORM */
+
+.panel {
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+
+    margin: 15px 0 7px;
+
+    color: #dce5df;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+
+    background: #080c0a;
+
+    color: white;
+
+    outline: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--green);
+}
+
+button {
+    border: none;
+
+    cursor: pointer;
+}
+
+.post-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 20px;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+    color: #061009;
+
+    font-weight: 900;
+
+    font-size: 15px;
+}
+
+.post-btn:hover {
+    background: #4df07f;
+}
+
+/* TIPS */
+
+.tip-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,26,20,0.96),
+            rgba(8,13,10,0.96)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    margin-top: 15px;
+}
+
+.tip-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+}
+
+.tip-type {
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    color: var(--green);
+}
+
+.tip-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 20px;
+}
+
+.tip-card p {
+    color: #cbd3cd;
+
+    margin: 7px 0;
+
+    line-height: 1.5;
+}
+
+/* RESULT */
+
+.result-select {
+    width: auto;
+
+    min-width: 145px;
+
+    padding: 9px 12px;
+
+    margin: 0;
+
+    font-weight: 800;
+}
+
+.result-pending {
+    color: var(--gold);
+}
+
+.result-won {
+    color: var(--green);
+}
+
+.result-lost {
+    color: var(--red);
+}
+
+.delete-btn {
+    width: auto;
+
+    padding: 9px 13px;
+
+    margin-top: 15px;
+
+    border-radius: 8px;
+
+    background: #351515;
+
+    color: #ff8d8d;
+
+    font-weight: 800;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+
+    padding: 35px;
+
+    color: var(--muted);
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .header-actions {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .tip-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .result-select {
+        width: 100%;
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>SHARPTIPS ADMIN</h1>
-    <p class="subtitle">Post and manage your betting tips.</p>
+<header>
 
-    <div class="form-box">
+    <img
+        src="header.png"
+        class="logo"
+        alt="SHARPTIPS"
+    >
 
-        <label for="match">Match</label>
-        <input
-            type="text"
-            id="match"
-            placeholder="e.g. Arsenal vs Chelsea"
+    <div class="header-actions">
+
+        <a
+            href="index.html"
+            class="back"
         >
+            ← SHARPTIPS
+        </a>
 
-        <label for="prediction">Prediction</label>
-        <input
-            type="text"
-            id="prediction"
-            placeholder="e.g. Over 2.5 Goals"
+        <button
+            class="logout"
+            onclick="logout()"
         >
-
-        <label for="odds">Odds</label>
-        <input
-            type="number"
-            id="odds"
-            step="0.01"
-            placeholder="e.g. 1.80"
-        >
-
-        <label for="price">Price (KES)</label>
-        <input
-            type="number"
-            id="price"
-            placeholder="e.g. 100"
-        >
-
-        <label for="type">Tip Type</label>
-        <select id="type">
-            <option value="free">Free Tip</option>
-            <option value="premium">Premium Tip</option>
-        </select>
-
-        <label for="analysis">Analysis</label>
-        <textarea
-            id="analysis"
-            placeholder="Write your analysis here..."
-        ></textarea>
-
-        <button onclick="postTip()">POST TIP</button>
-
-        <div id="message" class="message success">
-            Tip posted successfully!
-        </div>
+            LOGOUT
+        </button>
 
     </div>
 
-    <div class="tips" id="tips"></div>
-<button onclick="logout()">LOGOUT</button>
+</header>
 
-<a href="index.html" class="back">← Back to SHARPTIPS</a>
-   
+
+<section class="hero">
+
+    <h1>
+        SHARPTIPS <span>Admin</span>
+    </h1>
+
+    <p>
+        Manage football tips, premium selections
+        and match results.
+    </p>
+
+</section>
+
+
+<!-- POST TIP -->
+
+<section class="panel">
+
+    <h2>
+        ⚽ Post New Tip
+    </h2>
+
+    <label>
+        Match
+    </label>
+
+    <input
+        type="text"
+        id="match"
+        placeholder="Example: Arsenal vs Chelsea"
+    >
+
+
+    <label>
+        Prediction
+    </label>
+
+    <input
+        type="text"
+        id="prediction"
+        placeholder="Example: Over 1.5 Goals"
+    >
+
+
+    <label>
+        Odds
+    </label>
+
+    <input
+        type="text"
+        id="odds"
+        placeholder="Example: 1.45"
+    >
+
+
+    <label>
+        Tip Type
+    </label>
+
+    <select id="type">
+
+        <option value="free">
+            Free Tip
+        </option>
+
+        <option value="premium">
+            Premium Tip
+        </option>
+
+    </select>
+
+
+    <label>
+        Premium Price (KES)
+    </label>
+
+    <input
+        type="number"
+        id="price"
+        placeholder="Example: 100"
+        value="100"
+    >
+
+
+    <label>
+        Analysis
+    </label>
+
+    <textarea
+        id="analysis"
+        placeholder="Write your football analysis here..."
+    ></textarea>
+
+
+    <button
+        class="post-btn"
+        onclick="postTip()"
+    >
+        ⚡ POST TIP
+    </button>
+
+</section>
+
+
+<!-- EXISTING TIPS -->
+
+<section class="panel">
+
+    <h2>
+        📋 Manage Posted Tips
+    </h2>
+
+    <div id="tipsList"></div>
+
+</section>
+
+
 </div>
+
 
 <script>
 
-if (sessionStorage.getItem("sharpTipsAdmin") !== "true") {
+/* =================================
+   ADMIN SECURITY
+================================= */
+
+if (
+    sessionStorage.getItem("sharpTipsAdmin")
+    !== "true"
+) {
+
     window.location.href = "login.html";
+
 }
+
+
+/* =================================
+   GET TIPS
+================================= */
 
 function getTips() {
-    return JSON.parse(localStorage.getItem("sharpTips")) || [];
+
+    return JSON.parse(
+        localStorage.getItem("sharpTips")
+    ) || [];
+
 }
 
+
+/* =================================
+   SAVE TIPS
+================================= */
+
 function saveTips(tips) {
-    localStorage.setItem("sharpTips", JSON.stringify(tips));
+
+    localStorage.setItem(
+        "sharpTips",
+        JSON.stringify(tips)
+    );
+
 }
+
+
+/* =================================
+   POST TIP
+================================= */
 
 function postTip() {
 
-    const match = document.getElementById("match").value.trim();
-    const prediction = document.getElementById("prediction").value.trim();
-    const odds = document.getElementById("odds").value;
-    const price = document.getElementById("price").value;
-    const type = document.getElementById("type").value;
-    const analysis = document.getElementById("analysis").value.trim();
+    const match =
+        document.getElementById("match")
+        .value.trim();
 
-    if (!match || !prediction || !odds || !analysis) {
-        alert("Please fill in all required fields.");
+    const prediction =
+        document.getElementById("prediction")
+        .value.trim();
+
+    const odds =
+        document.getElementById("odds")
+        .value.trim();
+
+    const type =
+        document.getElementById("type")
+        .value;
+
+    const price =
+        document.getElementById("price")
+        .value;
+
+    const analysis =
+        document.getElementById("analysis")
+        .value.trim();
+
+
+    if (
+        !match ||
+        !prediction ||
+        !odds ||
+        !analysis
+    ) {
+
+        alert(
+            "Please fill in Match, Prediction, Odds and Analysis."
+        );
+
         return;
+
     }
 
-    const tip = {
-        id: Date.now(),
-        match: match,
-        prediction: prediction,
-        odds: odds,
-        price: price || 0,
-        type: type,
-        analysis: analysis,
-        date: new Date().toLocaleString()
-    };
 
     const tips = getTips();
 
-    tips.unshift(tip);
+
+    const newTip = {
+
+        id: Date.now(),
+
+        match: match,
+
+        prediction: prediction,
+
+        odds: odds,
+
+        type: type,
+
+        price:
+            type === "premium"
+                ? Number(price || 0)
+                : 0,
+
+        analysis: analysis,
+
+        result: "pending",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    tips.push(newTip);
+
 
     saveTips(tips);
 
-    document.getElementById("message").style.display = "block";
 
     document.getElementById("match").value = "";
+
     document.getElementById("prediction").value = "";
+
     document.getElementById("odds").value = "";
-    document.getElementById("price").value = "";
+
     document.getElementById("analysis").value = "";
 
+
+    alert(
+        "Tip posted successfully!"
+    );
+
+
     displayTips();
+
 }
+
+
+/* =================================
+   DISPLAY TIPS
+================================= */
 
 function displayTips() {
 
     const tips = getTips();
 
-    const container = document.getElementById("tips");
+    const container =
+        document.getElementById("tipsList");
 
-    container.innerHTML = "<h2>Posted Tips</h2>";
 
-    tips.forEach(tip => {
+    if (tips.length === 0) {
 
-        container.innerHTML += `
-            <div class="tip">
+        container.innerHTML = `
 
-                <h3>
-                    ${tip.type === "premium" ? "🔒 PREMIUM" : "🆓 FREE"}
-                </h3>
+            <div class="empty">
 
-                <p><strong>Match:</strong> ${tip.match}</p>
+                ⚽
 
-                <p><strong>Prediction:</strong> ${tip.prediction}</p>
+                <br><br>
 
-                <p><strong>Odds:</strong> ${tip.odds}</p>
-
-                <p><strong>Price:</strong> KES ${tip.price}</p>
-
-                <p><strong>Analysis:</strong> ${tip.analysis}</p>
-
-                <p><small>${tip.date}</small></p>
+                No tips have been posted yet.
 
             </div>
+
         `;
-    });
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    [...tips]
+        .reverse()
+        .forEach(function(tip) {
+
+            let result =
+                String(
+                    tip.result ||
+                    "pending"
+                ).toLowerCase();
+
+
+            let resultClass =
+                "result-pending";
+
+
+            if (
+                result === "won" ||
+                result === "win"
+            ) {
+
+                resultClass =
+                    "result-won";
+
+            }
+
+
+            if (
+                result === "lost" ||
+                result === "loss"
+            ) {
+
+                resultClass =
+                    "result-lost";
+
+            }
+
+
+            const typeLabel =
+                tip.type === "premium"
+                    ? "💎 PREMIUM"
+                    : "🆓 FREE";
+
+
+            container.innerHTML += `
+
+                <div class="tip-card">
+
+                    <div class="tip-top">
+
+                        <span class="tip-type">
+                            ${typeLabel}
+                        </span>
+
+                        <select
+                            class="
+                                result-select
+                                ${resultClass}
+                            "
+                            onchange="
+                                updateResult(
+                                    ${tip.id},
+                                    this.value
+                                )
+                            "
+                        >
+
+                            <option
+                                value="pending"
+                                ${result === "pending" ? "selected" : ""}
+                            >
+                                ⏳ PENDING
+                            </option>
+
+                            <option
+                                value="won"
+                                ${result === "won" || result === "win" ? "selected" : ""}
+                            >
+                                ✅ WON
+                            </option>
+
+                            <option
+                                value="lost"
+                                ${result === "lost" || result === "loss" ? "selected" : ""}
+                            >
+                                ❌ LOST
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <h3>
+                        ${tip.match}
+                    </h3>
+
+
+                    <p>
+                        <strong>
+                            Prediction:
+                        </strong>
+
+                        ${tip.prediction}
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Odds:
+                        </strong>
+
+                        ${tip.odds}
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Analysis:
+                        </strong>
+
+                        ${tip.analysis}
+                    </p>
+
+
+                    ${
+                        tip.type === "premium"
+                        ? `
+                            <p>
+                                <strong>
+                                    Price:
+                                </strong>
+
+                                KES ${tip.price || 0}
+                            </p>
+                        `
+                        : ""
+                    }
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="
+                            deleteTip(${tip.id})
+                        "
+                    >
+                        🗑 DELETE TIP
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
 }
 
-displayTips();
 
-displayTips();
+/* =================================
+   UPDATE RESULT
+================================= */
+
+function updateResult(
+    tipId,
+    newResult
+) {
+
+    const tips = getTips();
+
+
+    const tip =
+        tips.find(function(item) {
+
+            return item.id == tipId;
+
+        });
+
+
+    if (!tip) {
+        return;
+    }
+
+
+    tip.result =
+        newResult;
+
+
+    saveTips(tips);
+
+
+    displayTips();
+
+}
+
+
+/* =================================
+   DELETE TIP
+================================= */
+
+function deleteTip(tipId) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this tip?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    let tips = getTips();
+
+
+    tips =
+        tips.filter(function(tip) {
+
+            return tip.id != tipId;
+
+        });
+
+
+    saveTips(tips);
+
+
+    displayTips();
+
+}
+
+
+/* =================================
+   LOGOUT
+================================= */
 
 function logout() {
 
-    sessionStorage.removeItem("sharpTipsAdmin");
+    sessionStorage.removeItem(
+        "sharpTipsAdmin"
+    );
 
-    window.location.href = "login.html";
+    window.location.href =
+        "login.html";
 
 }
+
+
+/* =================================
+   START
+================================= */
+
+displayTips();
 
 </script>
 
 </body>
 </html>
-```

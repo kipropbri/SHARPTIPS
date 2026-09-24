@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHARPTIPS | Premium</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #35e56f;
+    --green-dark: #18a94d;
+    --gold: #f5c451;
+    --white: #f5f7f5;
+    --muted: #9aa79f;
+    --panel: rgba(7,15,10,0.84);
+    --border: rgba(255,255,255,0.10);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--white);
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(2,7,4,0.62),
+            rgba(2,7,4,0.92)
+        ),
+        url("background.png") center top / cover fixed no-repeat;
+}
+
+/* HEADER */
+
+header {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    background: rgba(3,9,5,0.78);
+    backdrop-filter: blur(12px);
+
+    padding: 10px 20px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 190px;
+    height: auto;
+    display: block;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav a {
+    color: #dce5df;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 10px 11px;
+    border-radius: 8px;
+}
+
+nav a:hover {
+    color: var(--green);
+    background: rgba(53,229,111,0.08);
+}
+
+.account-btn {
+    background: var(--green);
+    color: #061009 !important;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 18px 60px;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 80px 15px 45px;
+    max-width: 850px;
+    margin: auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 9px 17px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+
+    background: rgba(245,196,81,0.10);
+    border: 1px solid rgba(245,196,81,0.30);
+
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.hero h1 {
+    font-size: clamp(38px,6vw,65px);
+    line-height: 1.03;
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    max-width: 680px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* PREMIUM CARD */
+
+.premium-card {
+    max-width: 850px;
+    margin: 20px auto;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(45,35,15,0.94),
+            rgba(7,13,9,0.96)
+        );
+
+    border: 1px solid rgba(245,196,81,0.30);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.35);
+}
+
+.premium-label {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.premium-card h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.premium-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.feature {
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+}
+
+.feature-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.feature h3 {
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* BUTTON */
+
+.button {
+    display: block;
+    width: 100%;
+
+    text-align: center;
+    text-decoration: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: var(--gold);
+
+    color: #161208;
+
+    font-weight: 900;
+
+    margin-top: 25px;
+}
+
+.button:hover {
+    background: #ffd76c;
+}
+
+/* NOTICE */
+
+.notice {
+    max-width: 850px;
+    margin: 20px auto;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(53,229,111,0.07);
+
+    border: 1px solid rgba(53,229,111,0.20);
+
+    color: #cbd3cd;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+.notice strong {
+    color: var(--green);
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    color: #66736b;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    padding: 45px 0 10px;
+
+    border-top: 1px solid var(--border);
+
+    margin-top: 50px;
+}
+
+/* MOBILE */
+
+@media (max-width:850px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .header-logo {
+        width: 170px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 11px;
+        padding: 8px 9px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 55px 10px 35px;
+    }
+
+    .premium-card {
+        padding: 25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="header.png"
+            class="header-logo"
+            alt="SHARPTIPS"
+        >
+
+    </div>
+
+    <nav>
+
+        <a href="index.html">HOME</a>
+
+        <a href="tips.html">TIPS</a>
+
+        <a href="stats.html">STATS</a>
+
+        <a href="premium.html">PREMIUM</a>
+
+        <a href="results.html">RESULTS</a>
+
+        <a href="about.html">ABOUT</a>
+
+        <a
+            href="customer.html"
+            class="account-btn"
+        >
+            ACCOUNT
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-badge">
+        💎 PREMIUM SHARPTIPS
+    </div>
+
+    <h1>
+        Unlock <span>Premium</span><br>
+        Football Selections
+    </h1>
+
+    <p>
+        Get access to premium football predictions,
+        detailed match analysis and selected
+        accumulator opportunities.
+    </p>
+
+</section>
+
+
+<div class="premium-card">
+
+    <div class="premium-label">
+        💎 PREMIUM ACCESS
+    </div>
+
+    <h2>
+        Premium Football Predictions
+    </h2>
+
+    <p>
+        SHARPTIPS Premium gives members access to
+        selected football predictions that are not
+        available in the free section.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>
+                Selected Tips
+            </h3>
+
+            <p>
+                Access premium selections
+                posted by SHARPTIPS.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Match Analysis
+            </h3>
+
+            <p>
+                Review additional information
+                behind selected matches.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3>
+                Member Access
+            </h3>
+
+            <p>
+                Premium selections are available
+                after successful payment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="customer.html"
+        class="button"
+    >
+        🔓 LOGIN & UNLOCK PREMIUM
+    </a>
+
+</div>
+
+
+<div class="notice">
+
+    💳 <strong>Secure M-Pesa Access:</strong>
+
+    Premium selections can be unlocked
+    through the SHARPTIPS customer account.
+
+</div>
+
+
+<footer class="footer">
+
+    <strong style="color:#dce5df;">
+        SHARPTIPS
+    </strong>
+
+    <br>
+
+    Football analysis, predictions and premium selections.
+
+    <br>
+
+    <span style="color:#4f5b54;">
+        © 2026 SHARPTIPS. All rights reserved.
+    </span>
+
+</footer>
+
+</div>
+
+</body>
+</html>
